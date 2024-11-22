@@ -433,3 +433,74 @@ header {
     top: 2.5rem;
   }
 }
+
+
+.slider-container {
+  width: 400px;
+  position: relative;
+}
+
+.range-slider {
+  position: relative;
+  height: 50px;
+}
+
+/* Slider track */
+.range-slider input[type="range"] {
+  position: absolute;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: green;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: green;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Range track styling */
+.track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.range-progress {
+  position: absolute;
+  top: 50%;
+  height: 8px;
+  background: green;
+  border-radius: 4px;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 16px;
+}

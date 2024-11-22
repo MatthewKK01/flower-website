@@ -49,8 +49,17 @@
   <div class="main-box">
     <div class="filter-box">
       <span>Price</span>
-      <div class="price-slider-frame">
-        <img src="./images/slider.png" alt="slider">
+      <div class="slider-container">
+        <div class="range-slider">
+          <div class="track"></div>
+          <div class="range-progress" id="rangeProgress"></div>
+          <input type="range" id="minPrice" min="0" max="1000" value="200" step="1">
+          <input type="range" id="maxPrice" min="0" max="1000" value="800" step="1">
+        </div>
+        <div class="price-values">
+          <span>Min: $<span id="minPriceValue">200</span></span>
+          <span>Max: $<span id="maxPriceValue">800</span></span>
+        </div>
       </div>
       <div class="price-limits">
         <div class="min-price-limit limit">39</div>
@@ -60,7 +69,7 @@
       <span>Color</span>
       <div class="color-picker">
         <div class="color-container">
-          <div class="color1 color"><i class="fa fa-check" aria-hidden="true"></i></div>
+          <div class="color1 color"><input type="checkbox" name="" id=""></div>
         </div>
         <div class="color-container">
           <div class="color2 color">&nbsp;</div>
@@ -78,45 +87,45 @@
       <div class="spacer"></div>
       <span>Event</span>
       <div class="event1 event">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Birthday</span>
       </div>
       <div class="event">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Anniversary</span>
       </div>
       <div class="event">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Congratulations</span>
       </div>
       <div class="event">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Valentin's day</span>
       </div>
       <div class="event">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Apologize</span>
       </div>
       <div class="spacer"></div>
       <span>For whom</span>
       <div class="for-whom">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Spouse</span>
       </div>
       <div class="for-whom">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Girlfriend</span>
       </div>
       <div class="for-whom">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Mother</span>
       </div>
       <div class="for-whom for-whom1">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Daughter</span>
       </div>
       <div class="for-whom">
-        <div class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></div>
+        <div class="checkmark"><input type="checkbox" name="" id=""></div>
         <span>Friend</span>
       </div>
       <div class="show-btn">Show results</div>
@@ -224,5 +233,41 @@
   </div>
 </section>
 </main> 
+
+<script>
+  const minPrice = document.getElementById("minPrice");
+    const maxPrice = document.getElementById("maxPrice");
+    const minPriceValue = document.getElementById("minPriceValue");
+    const maxPriceValue = document.getElementById("maxPriceValue");
+    const rangeProgress = document.getElementById("rangeProgress");
+
+    function updateSlider() {
+      const min = parseInt(minPrice.value);
+      const max = parseInt(maxPrice.value);
+
+      // Prevent sliders from crossing each other
+      if (min > max) {
+        minPrice.value = max;
+      } else if (max < min) {
+        maxPrice.value = min;
+      }
+
+      // Update displayed values
+      minPriceValue.textContent = minPrice.value;
+      maxPriceValue.textContent = maxPrice.value;
+
+      // Calculate and set range progress position and width
+      const minPercent = (min / minPrice.max) * 100;
+      const maxPercent = (max / maxPrice.max) * 100;
+      rangeProgress.style.left = `${minPercent}%`;
+      rangeProgress.style.width = `${maxPercent - minPercent}%`;
+    }
+
+    minPrice.addEventListener("input", updateSlider);
+    maxPrice.addEventListener("input", updateSlider);
+
+    // Initialize slider values
+    updateSlider();
+</script>
 </body>
 </html>
